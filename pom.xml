@@ -10,8 +10,34 @@
   <packaging>maven-archetype</packaging>
 
   <name>Archetype - homework-quickstart</name>
-
+  <description>Maven Archetype for quick creation of homework projects</description>
   <url>https://github.com/atp-mipt/homework-quickstart</url>
+
+  <organization>
+    <name>MIPT/FIVT/ATP</name>
+    <url>https://mipt.ru/education/chairs/programmingtechnolgy/</url>
+  </organization>
+
+  <scm>
+    <url>https://github.com/atp-mipt/homework-quickstart.git</url>
+    <connection>scm:git:git://github.com/atp-mipt/homework-quickstart.git</connection>
+    <developerConnection>scm:git:git://github.com/atp-mipt/homework-quickstart.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Ivan Ponomarev</name>
+      <email>ponomarev@phystech.edu</email>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +45,41 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+    </plugins>
     <extensions>
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
