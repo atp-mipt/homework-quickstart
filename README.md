@@ -5,7 +5,8 @@
 
 Homework-quickstart is an Apache Maven project archetype pre-configured for 
 
-* Java 11
+* Java 11 by default (you can change the version when asked for `javaversion` property value or
+  by passing `-Djavaversion=<YOUR_JAVA_VERSION>` in the command line)
 * [JUnit 5](https://junit.org/junit5/)
 * [AssertJ](https://assertj.github.io/doc/)
 * [Approvals](https://github.com/approvals/approvaltests.java)
