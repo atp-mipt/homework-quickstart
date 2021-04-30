@@ -6,7 +6,7 @@
 
     <groupId>org.atp-fivt</groupId>
     <artifactId>homework-quickstart</artifactId>
-    <version>1.03</version>
+    <version>1.04</version>
     <packaging>maven-archetype</packaging>
 
     <name>Archetype - homework-quickstart</name>

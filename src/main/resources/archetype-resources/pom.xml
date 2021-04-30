@@ -15,13 +15,13 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>5.7.0</junit.version>
+    <junit.version>5.7.1</junit.version>
     <assertj.core.version>3.19.0</assertj.core.version>
-    <approvaltests.version>9.5.0</approvaltests.version>
+    <approvaltests.version>11.2.2</approvaltests.version>
     <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
     <jacoco.maven.plugin.version>0.8.6</jacoco.maven.plugin.version>
     <checkstyle.maven.plugin.version>3.1.2</checkstyle.maven.plugin.version>
-    <checkstyle.version>8.40</checkstyle.version>
+    <checkstyle.version>8.42</checkstyle.version>
   </properties>
 
   <dependencies>
