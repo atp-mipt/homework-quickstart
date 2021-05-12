@@ -164,7 +164,7 @@
         <module name="IllegalType">
             <property name="illegalClassNames"
                       value="java.lang.StringBuffer, StringBuffer,
-                      java.util.Vector, Vector, java.util.Hashtable, Hastable"/>
+                      java.util.Vector, Vector, java.util.Hashtable, Hashtable"/>
         </module>
 
     </module>
