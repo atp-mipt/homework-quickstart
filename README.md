@@ -18,7 +18,7 @@ Homework-quickstart is an Apache Maven project archetype pre-configured for
 ```
 mvn archetype:generate -DarchetypeArtifactId=homework-quickstart
                        -DarchetypeGroupId=org.atp-fivt 
-                       -DarchetypeVersion=1.04 
+                       -DarchetypeVersion=1.05 
                        -DgroupId=<YOUR GROUP ID> 
                        -DartifactId=<YOUR ARTIFACT ID>
 ```
