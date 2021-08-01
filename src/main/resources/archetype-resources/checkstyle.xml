@@ -60,6 +60,8 @@
     <!-- </module> -->
 
     <module name="TreeWalker">
+        <!-- Checks for annotations -->
+        <module name="PackageAnnotation"/>
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See https://checkstyle.org/config_naming.html -->
@@ -112,7 +114,6 @@
         <module name="LeftCurly"/>
         <module name="NeedBraces">
             <property name="allowSingleLineStatement" value="true"/>
-            <property name="tokens" value="LITERAL_CASE, LITERAL_DEFAULT, LAMBDA"/>
             <property name="allowEmptyLoopBody" value="true"/>
         </module>
         <module name="RightCurly"/>
