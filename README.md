@@ -16,10 +16,10 @@ Homework-quickstart is an Apache Maven project archetype pre-configured for
 ## How to use
 
 ```
-mvn archetype:generate -DarchetypeArtifactId=homework-quickstart
-                       -DarchetypeGroupId=org.atp-fivt 
-                       -DarchetypeVersion=1.07 
-                       -DgroupId=<YOUR GROUP ID> 
+mvn archetype:generate -DarchetypeArtifactId=homework-quickstart \
+                       -DarchetypeGroupId=org.atp-fivt \
+                       -DarchetypeVersion=1.07 \
+                       -DgroupId=<YOUR GROUP ID> \ 
                        -DartifactId=<YOUR ARTIFACT ID>
 ```
 
