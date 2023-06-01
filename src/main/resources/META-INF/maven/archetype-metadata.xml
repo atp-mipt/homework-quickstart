@@ -40,7 +40,8 @@ under the License.
             <directory/>
             <includes>
                 <include>checkstyle.xml</include>
-                <include>README.md</include>
+                <include>checkstyle-suppressions.xml</include>
+				<include>README.md</include>
                 <include>.gitignore.tmpl</include>
             </includes>
         </fileSet>
