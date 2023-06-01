@@ -1,3 +1,7 @@
-# Project Name
+# ${groupId}:${artifactId}
 
-Project description
+Write your project description here...
+
+Java version ${javaversion}
+
+Generated at ${timestamp}
