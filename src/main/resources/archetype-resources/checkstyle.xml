@@ -59,7 +59,11 @@
     <!--   <property name="fileExtensions" value="java"/> -->
     <!-- </module> -->
 
+    <module name="SuppressWarningsFilter"/>
+
     <module name="TreeWalker">
+        <module name="SuppressWarningsHolder"/>
+
         <!-- Checks for annotations -->
         <module name="PackageAnnotation"/>
 
