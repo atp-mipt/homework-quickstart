@@ -5,7 +5,7 @@
 
 Homework-quickstart is an Apache Maven project archetype pre-configured for 
 
-* Java 11 by default (you can change the version when asked for `javaversion` property value or
+* Java 21 by default (you can change the version when asked for `javaversion` property value or
   by passing `-Djavaversion=<YOUR_JAVA_VERSION>` in the command line)
 * [JUnit 5](https://junit.org/junit5/)
 * [AssertJ](https://assertj.github.io/doc/)
@@ -18,7 +18,7 @@ Homework-quickstart is an Apache Maven project archetype pre-configured for
 ```
 mvn archetype:generate -DarchetypeArtifactId=homework-quickstart \
                        -DarchetypeGroupId=org.atp-fivt \
-                       -DarchetypeVersion=1.09 \
+                       -DarchetypeVersion=2.0 \
                        -DgroupId=<YOUR GROUP ID> \ 
                        -DartifactId=<YOUR ARTIFACT ID>
 ```
