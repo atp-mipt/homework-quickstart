@@ -15,5 +15,6 @@ content = content.replace('${artifactId}', request.getArtifactId())
 content = content.replace('${javaversion}', request.getProperties().get("javaversion"))
 def formatter = new SimpleDateFormat('yyyy-MM-dd HH:mm:ss')
 content = content.replace('${timestamp}', formatter.format(new Date()))
+content = content.replace('${archetypeversion}', request.getArchetypeVersion())
 
 readme.write(content)
