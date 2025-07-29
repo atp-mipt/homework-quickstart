@@ -1,7 +1,7 @@
 # Homework Quickstart
 
 [![Actions Status: build](https://github.com/atp-mipt/homework-quickstart/workflows/build/badge.svg)](https://github.com/atp-mipt/homework-quickstart/actions?query=workflow%3A"build")
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.atp-fivt/homework-quickstart/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.atp-fivt/homework-quickstart)
+![Maven Central Version](https://img.shields.io/maven-central/v/org.atp-fivt/homework-quickstart?color=green)
 
 Homework-quickstart is an Apache Maven project archetype pre-configured for 
 
