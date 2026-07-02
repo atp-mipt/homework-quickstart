@@ -52,25 +52,12 @@
         <property name="message" value="Line has trailing spaces."/>
     </module>
 
-    <!-- Checks for Headers                                -->
-    <!-- See https://checkstyle.org/config_header.html   -->
-    <!-- <module name="Header"> -->
-    <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
-    <!--   <property name="fileExtensions" value="java"/> -->
-    <!-- </module> -->
-
     <module name="SuppressWarningsFilter"/>
 
     <module name="TreeWalker">
-        <module name="SuppressWarningsHolder"/>
 
-        <!-- Checks for annotations -->
-        <module name="PackageAnnotation"/>
-
-        <!-- Checks for Naming Conventions.                  -->
-        <!-- See https://checkstyle.org/config_naming.html -->
+        <!-- Naming: important for Java readability -->
         <module name="ConstantName"/>
-        <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
         <module name="MethodName"/>
@@ -79,97 +66,82 @@
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
-        <!-- Checks for imports                              -->
-        <!-- See https://checkstyle.org/config_imports.html -->
+        <!-- Imports: important and easy to understand -->
         <module name="AvoidStarImport"/>
-        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+        <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports">
             <property name="processJavadoc" value="false"/>
         </module>
 
-        <!-- Checks for Size Violations.                    -->
-        <!-- See https://checkstyle.org/config_sizes.html -->
-        <module name="MethodLength"/>
-        <module name="ParameterNumber"/>
+        <!-- Size / complexity: educational -->
+        <module name="MethodLength">
+            <property name="max" value="100"/>
+            <property name="countEmpty" value="false"/>
+        </module>
 
-        <!-- Checks for whitespace                               -->
-        <!-- See https://checkstyle.org/config_whitespace.html -->
-        <module name="EmptyForIteratorPad"/>
-        <module name="GenericWhitespace"/>
-        <module name="MethodParamPad"/>
-        <module name="NoWhitespaceAfter"/>
-        <module name="NoWhitespaceBefore"/>
-        <module name="OperatorWrap"/>
-        <module name="ParenPad"/>
-        <module name="TypecastParenPad"/>
-        <module name="WhitespaceAfter"/>
-        <module name="WhitespaceAround"/>
+        <module name="ParameterNumber">
+            <property name="max" value="6"/>
+            <property name="ignoreOverriddenMethods" value="true"/>
+        </module>
 
-        <!-- Modifier Checks                                    -->
-        <!-- See https://checkstyle.org/config_modifiers.html -->
-        <module name="ModifierOrder"/>
-        <module name="RedundantModifier"/>
+        <module name="CyclomaticComplexity">
+            <property name="max" value="20"/>
+            <property name="switchBlockAsSingleDecisionPoint" value="true"/>
+        </module>
 
-        <!-- Checks for blocks. You know, those {}'s         -->
-        <!-- See https://checkstyle.org/config_blocks.html -->
-        <module name="AvoidNestedBlocks"/>
-        <module name="EmptyBlock"/>
-        <module name="LeftCurly"/>
+        <module name="NestedIfDepth">
+            <property name="max" value="4"/>
+        </module>
+        <module name="NestedForDepth">
+            <property name="max" value="4"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="3"/>
+        </module>
+
+        <!-- Minimal formatting / block safety -->
         <module name="NeedBraces">
             <property name="allowSingleLineStatement" value="true"/>
             <property name="allowEmptyLoopBody" value="true"/>
         </module>
-        <module name="RightCurly"/>
+        <module name="AvoidNestedBlocks"/>
+        <module name="EmptyBlock"/>
 
-        <!-- Checks for common coding problems               -->
-        <!-- See https://checkstyle.org/config_coding.html -->
+        <!-- Correctness / common Java mistakes -->
         <module name="NoFinalizer"/>
         <module name="NoClone"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField">
-            <property name="ignoreConstructorParameter" value="true"/>
-            <property name="ignoreSetter" value="true"/>
-            <property name="setterCanReturnItsClass" value="true"/>
-            <property name="ignoreAbstractMethods" value="true"/>
-        </module>
-        <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1, 0, 1, 2, 3, 4, 5, 6, 7"/>
+            <property name="ignoreNumbers" value="-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"/>
             <property name="ignoreHashCodeMethod" value="true"/>
             <property name="ignoreAnnotation" value="true"/>
         </module>
         <module name="MultipleVariableDeclarations"/>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
-
-        <!-- Checks for class design                         -->
-        <!-- See https://checkstyle.org/config_design.html -->
-        <module name="DesignForExtension"/>
-        <module name="FinalClass"/>
-        <module name="HideUtilityClassConstructor"/>
-        <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
-
-        <!-- Miscellaneous other checks.                   -->
-        <!-- See https://checkstyle.org/config_misc.html -->
-        <module name="ArrayTypeStyle"/>
-        <module name="TodoComment"/>
-        <module name="UpperEll"/>
         <module name="EqualsAvoidNull"/>
         <module name="StringLiteralEquality"/>
         <module name="UnnecessaryParentheses"/>
         <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
-        <module name="EmptyStatement"/>
         <module name="EmptyCatchBlock"/>
+        <module name="MissingSwitchDefault"/>
+        <module name="FallThrough"/>
+        <module name="ModifiedControlVariable"/>
 
-        <!-- Prohibited (outdated) APIs -->
+        <!-- Misc useful style -->
+        <module name="ArrayTypeStyle"/>
+        <module name="UpperEll"/>
+
+        <!-- Prohibited outdated APIs -->
         <module name="IllegalType">
             <property name="illegalClassNames"
                       value="java.lang.StringBuffer, StringBuffer,
-                      java.util.Vector, Vector, java.util.Hashtable, Hashtable"/>
+                         java.util.Vector, Vector,
+                         java.util.Hashtable, Hashtable,
+                         java.util.Stack, Stack"/>
         </module>
 
     </module>
