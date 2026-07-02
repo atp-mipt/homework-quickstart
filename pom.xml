@@ -41,6 +41,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.invoker.plugin.version>3.9.0</maven.invoker.plugin.version>
+        <!-- Archetype plugin version reused when tests invoke archetype:generate -->
+        <maven.archetype.plugin.version>3.4.1</maven.archetype.plugin.version>
     </properties>
 
     <build>
@@ -70,6 +73,49 @@
                     <waitUntil>validated</waitUntil>
                 </configuration>
             </plugin>
+            <plugin>
+                <!-- Integration tests: generate a project from this archetype for a range
+                     of target Java versions and build it. Each src/it/it-javaXX case is
+                     skipped by invoker.java.version when the running JDK is too old to
+                     compile that <release>, so the same suite is safe across the CI matrix. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>${maven.invoker.plugin.version}</version>
+                <configuration>
+                    <projectsDirectory>src/it</projectsDirectory>
+                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                    <pomIncludes>
+                        <pomInclude>*</pomInclude>
+                    </pomIncludes>
+                    <streamLogsOnFailures>true</streamLogsOnFailures>
+                    <!-- Passed as -D system properties to every invoked build, so that
+                         archetype:generate resolves the just-built archetype in batch mode.
+                         The per-version javaversion is set in each case's invoker.properties. -->
+                    <properties>
+                        <archetypeGroupId>${project.groupId}</archetypeGroupId>
+                        <archetypeArtifactId>${project.artifactId}</archetypeArtifactId>
+                        <archetypeVersion>${project.version}</archetypeVersion>
+                        <groupId>it.pkg</groupId>
+                        <artifactId>basic-project</artifactId>
+                        <version>0.1-SNAPSHOT</version>
+                        <package>it.pkg</package>
+                        <interactiveMode>false</interactiveMode>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <!-- install stages this archetype into the local repo
+                                 (pre-integration-test); run generates + builds each case
+                                 (integration-test). Neither reaches the verify phase, so
+                                 the GPG signing bound to verify is not triggered in CI. -->
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <extensions>
             <extension>
@@ -86,7 +132,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>3.4.1</version>
+                    <version>${maven.archetype.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>

@@ -25,7 +25,10 @@ under the License.
                       name="${artifactId}">
     <requiredProperties>
         <requiredProperty key="javaversion">
-            <defaultValue>21</defaultValue>
+            <!-- "auto" (resolved by archetype-post-generate.groovy to the current
+                 runtime Java version) is the default; an explicit value must be
+                 between 17 and the runtime version. -->
+            <defaultValue>auto</defaultValue>
         </requiredProperty>
     </requiredProperties>
 
