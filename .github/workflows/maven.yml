@@ -15,15 +15,15 @@ jobs:
     # gap on a pre-GA JDK, so the 26 cell may fail without failing the workflow.
     # Once maven-archetype-plugin ships a Groovy that supports JDK 26, drop the
     # `include`/`continue-on-error` below and move '26' into the matrix.java list.
-    continue-on-error: ${{ matrix.experimental || false }}
+    # continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       # Don't cancel the other JDKs when one fails: we want to see the full matrix.
       fail-fast: false
       matrix:
         java: [ '17', '21', '25' ]
-        include:
-          - java: '26'
-            experimental: true
+        #include:
+        #  - java: '26'
+        #    experimental: true
     name: Java ${{ matrix.java }}
     steps:
       - uses: actions/checkout@v7
