@@ -12,16 +12,17 @@
 
   <properties>
     <java.version>${javaversion}</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>6.1.1</junit.version>
     <assertj.core.version>3.27.7</assertj.core.version>
     <approvaltests.version>31.0.0</approvaltests.version>
+    <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
     <maven.surefire.plugin.version>3.5.6</maven.surefire.plugin.version>
     <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
     <checkstyle.maven.plugin.version>3.6.0</checkstyle.maven.plugin.version>
     <checkstyle.version>13.7.0</checkstyle.version>
+    <export.maven.plugin.version>1.5</export.maven.plugin.version>
   </properties>
 
   <dependencies>
@@ -48,6 +49,31 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven.enforcer.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <!-- Minimum is the version this project was generated for
+                       (java.version, baked in by the archetype). -->
+                  <version>[${java.version},)</version>
+                </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>[3.9,)</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -90,6 +116,13 @@
             <version>${checkstyle.version}</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <!-- Bundles the whole project (respecting .gitignore) into target/export.zip.
+           Run `mvn export:export` to produce an archive for homework submission. -->
+      <plugin>
+        <groupId>org.atp-fivt</groupId>
+        <artifactId>export-maven-plugin</artifactId>
+        <version>${export.maven.plugin.version}</version>
       </plugin>
     </plugins>
   </build>

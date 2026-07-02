@@ -9,13 +9,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Java 26 is marked experimental below: the archetype plugin's bundled Groovy
+    # cannot yet parse JDK 26 bytecode (it fails running the post-generate script
+    # with "Unsupported class file major version 70"). This is an upstream toolchain
+    # gap on a pre-GA JDK, so the 26 cell may fail without failing the workflow.
+    # Once maven-archetype-plugin ships a Groovy that supports JDK 26, drop the
+    # `include`/`continue-on-error` below and move '26' into the matrix.java list.
+    continue-on-error: ${{ matrix.experimental || false }}
+    strategy:
+      # Don't cancel the other JDKs when one fails: we want to see the full matrix.
+      fail-fast: false
+      matrix:
+        java: [ '17', '21', '25' ]
+        include:
+          - java: '26'
+            experimental: true
+    name: Java ${{ matrix.java }}
     steps:
       - uses: actions/checkout@v7
-      - name: Set up JDK 21
+      - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: ${{ matrix.java }}
           cache: 'maven'
+      # Stop at integration-test: the invoker cases whose target <release> exceeds
+      # the running JDK are skipped via invoker.java.version, and the verify phase
+      # (GPG signing) is not reached.
       - name: Build with Maven
         run: mvn -B clean integration-test --file pom.xml
