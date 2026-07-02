@@ -41,7 +41,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.invoker.plugin.version>3.9.0</maven.invoker.plugin.version>
+        <maven.invoker.plugin.version>3.10.1</maven.invoker.plugin.version>
         <!-- Archetype plugin version reused when tests invoke archetype:generate -->
         <maven.archetype.plugin.version>3.4.1</maven.archetype.plugin.version>
     </properties>
