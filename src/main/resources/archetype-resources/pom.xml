@@ -14,7 +14,7 @@
     <java.version>${javaversion}</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>6.1.1</junit.version>
+    <junit.version>6.1.2</junit.version>
     <assertj.core.version>3.27.7</assertj.core.version>
     <approvaltests.version>31.0.0</approvaltests.version>
     <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
